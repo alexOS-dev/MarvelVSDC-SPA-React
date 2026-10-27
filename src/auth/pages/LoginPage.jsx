@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
@@ -35,17 +35,18 @@ export const LoginPage = () => {
           <div className="user-box">
             <input
               type="text"
+              id="username"
               name="username"
               value={username}
               onChange={handleUsernameChange}
               required={true}
               autoComplete="off"
             />
-            <label>Username</label>
+            <label htmlFor="username">Username</label>
           </div>
           <button
             className="login-button"
-            href="#"
+            type="button"
             onClick={handleLogin}
             disabled={username.trim() === ''}
           >

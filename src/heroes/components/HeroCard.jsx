@@ -1,71 +1,54 @@
 /* eslint-disable react/prop-types */
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-const CharactersByHero = ({alter_ego, characters}) => {
+const CharactersByHero = ({ alter_ego, characters }) => {
+  // if(alter_ego === characters) return(<></>);
 
-    // if(alter_ego === characters) return(<></>);
-
-    return (alter_ego === characters)
-    ? <></>
-    : <p>{ characters }</p>;
-}
+  return alter_ego === characters ? null : <p>{characters}</p>;
+};
 
 export const HeroCard = ({
-    id,
-    superhero,
-    // publisher,
-    alter_ego,
-    first_appearance,
-    characters,
+  id,
+  superhero,
+  // publisher,
+  alter_ego,
+  first_appearance,
+  characters,
 }) => {
+  const heroImageUrl = `/assets/heroes/${id}.jpg`;
 
-
-    const heroImageUrl = `/assets/heroes/${ id }.jpg`;
-
-    // const charactersByHero = (<p>{ characters }</p>);
+  // const charactersByHero = (<p>{ characters }</p>);
 
   return (
     <div className="col animate__animated animate__fadeIn">
-        <div className="card">
+      <div className="card">
+        <div className="row no-gutters">
+          <div className="col-4">
+            <img src={heroImageUrl} className="card-img" alt={superhero} />
+          </div>
 
-            <div className="row no-gutters">
+          <div className="col-8">
+            <div className="card-body">
+              <h5 className="card-title">{superhero}</h5>
+              <p className="card-text">{alter_ego}</p>
 
-                <div className="col-4">
-                    <img src={heroImageUrl} className="card-img" alt={superhero} />
-                </div>
-
-                <div className="col-8">
-                    
-                    <div className="card-body">
-                        
-                        <h5 className="card-title">{superhero}</h5>
-                        <p className="card-text">{alter_ego}</p>
-
-                        {/* {
+              {/* {
                             (alter_ego !== characters) && charactersByHero
                         } */}
-                        <CharactersByHero characters={characters} alter_ego={alter_ego}/>
+              <CharactersByHero characters={characters} alter_ego={alter_ego} />
 
-                        <p className="card-text">
-                            <small className="text-muted">{first_appearance}</small>
-                        </p>
+              <p className="card-text">
+                <small className="text-muted">{first_appearance}</small>
+              </p>
 
-                        <Link to={`/hero/${id}`}>
-                        More info
-                        </Link>
+              <Link to={`/hero/${id}`}>More info</Link>
 
-
-
-                        {/* <p className="">{characters}</p> */}
-
-                    </div>
-                </div>
-
+              {/* <p className="">{characters}</p> */}
             </div>
-
+          </div>
         </div>
+      </div>
     </div>
-  )
-}
-
+  );
+};
